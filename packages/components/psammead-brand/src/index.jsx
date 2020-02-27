@@ -120,6 +120,8 @@ const BrandSvg = styled.svg`
   /* stylelint-enable */
 `;
 
+const Product = ({ product }) => <span lang="en-GB">{product}</span>;
+
 const StyledBrand = ({
   product,
   serviceLocalisedName,
@@ -148,9 +150,11 @@ const StyledBrand = ({
           {svg.group}
         </BrandSvg>
         <VisuallyHiddenText>
-          {serviceLocalisedName
-            ? `${product}, ${serviceLocalisedName}`
-            : product}
+          {serviceLocalisedName ? (
+            `${(<Product />)}, ${serviceLocalisedName}`
+          ) : (
+            <Product />
+          )}
         </VisuallyHiddenText>
       </>
     )}
