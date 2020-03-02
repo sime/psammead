@@ -3,6 +3,7 @@ import { TEXT_VARIANTS } from '@bbc/psammead-storybook-helpers';
 import { latin } from '@bbc/gel-foundations/scripts';
 import Timestamp from '@bbc/psammead-timestamp';
 import { MostReadItemWrapper, MostReadLink } from '../Item';
+import { getColumnLayout } from '../List';
 import MostReadRank from '../Rank';
 
 /* eslint-disable react/prop-types */
@@ -49,20 +50,19 @@ export const getItemWrapperArray = ({
   script,
   dir,
   withTimestamp = false,
-  maxTwoColumns = false,
+  columnLayout,
 }) => {
   const itemWrapperArray = [];
   const item = getItem({ service, withTimestamp });
   for (let i = 1; i <= numberOfItems; i += 1) {
     itemWrapperArray.push(
-      <MostReadItemWrapper dir={dir} key={i} maxTwoColumns={maxTwoColumns}>
+      <MostReadItemWrapper dir={dir} key={i} columnLayout={getColumnLayout({oneColumn})}>
         <MostReadRank
           service={service}
           script={script}
           listIndex={i}
           numberOfItems={numberOfItems}
           dir={dir}
-          maxTwoColumns={maxTwoColumns}
         />
         <MostReadLink
           dir={dir}
